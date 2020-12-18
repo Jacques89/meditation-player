@@ -8,6 +8,7 @@ const app = () => {
   const sounds = document.querySelectorAll('.sound-picker button')
   // Time Display
   const timeDisplay = document.querySelector('.time-display')
+  const timeSelect = document.querySelectorAll('.time-select button')
   // Length of outline
   const outlineLength = outline.getTotalLength()
   // Duration
@@ -21,13 +22,44 @@ const app = () => {
     checkPlaying(track)
   })
 
+  // Sound selection
+  timeSelect.forEach(option => {
+    option.addEventListener('click', function() {
+      fakeDuration = this.getAttribute('data-time')
+      timeDisplay.textContent = `${Math.floor(fakeDuration / 60)}:${Math.floor(fakeDuration % 60)}`
+    })
+  })
+
   // stop & start track func
   const checkPlaying = track => {
     const vidPlayPause = track.paused ? video.play() : video.pause()
     play.src = track.paused ? './svg/pause.svg' : './svg/play.svg'
     track.paused ? track.play() && vidPlayPause && play.src  : track.pause() && vidPlayPause && play.src
   }
-  console.log(video)
+
+
+  // Circle Animation
+  track.ontimeupdate = () => {
+    let currentTime = track.currentTime
+    let elapsed = fakeDuration - currentTime
+    let minutes = Math.floor(elapsed / 60)
+    let seconds = Math.floor(elapsed % 60)
+
+    // Circle progress
+    let progress = outlineLength - (currentTime / fakeDuration) * outlineLength
+    outline.style.strokeDashoffset = progress
+
+    // Text Animation
+    timeDisplay.textContent = `${minutes}:${seconds}`
+
+    // Stop the timer and circle
+    if (currentTime >= fakeDuration)  {
+      track.pause()
+      currentTime = 0
+      play.src = './svg/play.svg'
+      video.pause()
+    }
+  }
 }
 
 
