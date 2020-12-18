@@ -24,9 +24,10 @@ const app = () => {
   // stop & start track func
   const checkPlaying = track => {
     play.src = track.paused ? './svg/pause.svg' : './svg/play.svg'
-    track.paused ? track.play() && play.src && video.play() : track.pause() && play.src && video.pause()
+    const vidPlayPause = track.paused ? video.play() : video.pause()
+    track.paused ? track.play() && vidPlayPause && play.src  : track.pause() && vidPlayPause && play.src
   }
-
+  console.log(video)
 }
 
 
