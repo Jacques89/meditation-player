@@ -16,6 +16,17 @@ const app = () => {
   outline.style.strokeDasharray = outlineLength
   outline.style.strokeDashoffset = outlineLength
 
+  // play sounds
+  play.addEventListener('click', () => {
+    checkPlaying(track)
+  })
+
+  // stop & start track func
+  const checkPlaying = track => {
+    play.src = track.paused ? './svg/pause.svg' : './svg/play.svg'
+    track.paused ? track.play() && play.src && video.play : track.pause() && play.src && video.pause()
+  }
+
 }
 
 
