@@ -17,6 +17,15 @@ const app = () => {
   outline.style.strokeDasharray = outlineLength
   outline.style.strokeDashoffset = outlineLength
 
+  // Different sound selection
+  sounds.forEach(sound => {
+    sound.addEventListener('click', function() {
+      track.src = this.getAttribute('data-sound')
+      video.src = this.getAttribute('data-video')
+      checkPlaying(track)
+    })
+  })
+
   // play sounds
   play.addEventListener('click', () => {
     checkPlaying(track)
@@ -42,25 +51,19 @@ const app = () => {
   track.ontimeupdate = () => {
     let currentTime = track.currentTime
     let elapsed = fakeDuration - currentTime
-    let minutes = Math.floor(elapsed / 60)
     let seconds = Math.floor(elapsed % 60)
-
-    // Circle progress
+    let minutes = Math.floor(elapsed / 60)
+    timeDisplay.textContent = `${minutes}:${seconds}`
     let progress = outlineLength - (currentTime / fakeDuration) * outlineLength
     outline.style.strokeDashoffset = progress
-
-    // Text Animation
-    timeDisplay.textContent = `${minutes}:${seconds}`
-
-    // Stop the timer and circle
-    if (currentTime >= fakeDuration)  {
+  
+    if (currentTime >= fakeDuration) {
       track.pause()
-      currentTime = 0
-      play.src = './svg/play.svg'
+      track.currentTime = 0
+      play.src = "./svg/play.svg"
       video.pause()
     }
   }
 }
-
 
 app()
