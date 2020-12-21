@@ -9,45 +9,17 @@
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+  font-family: "Montserrat", sans-serif;
 }
 
 .time-select, 
-.sound-picker,
-.player-container {
+.sound-picker {
   height: 80%;
   flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
-}
-
-.player-container {
-  position: relative;
-}
-
-.player-container svg {
-  position: absolute;
-  height: 50%;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) rotate(-90deg);
-  pointer-events: none;
-}
-
-.time-display {
-  position: absolute;
-  bottom: 10%;
-  color: white;
-  font-size: 50px;
-}
-
-video {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: -10;
 }
 
 .time-select button,
@@ -61,11 +33,6 @@ video {
   border-radius: 5px;
   font-size: 20px;
   transition: all 0.5s ease;
-}
-
-.time-select button:hover {
-  color: black;
-  background: white;
 }
 
 .sound-picker button {
@@ -85,4 +52,124 @@ video {
 }
 .sound-picker button:nth-child(2) {
   background: #a14f49;
+}
+
+.time-select button:hover {
+  color: black;
+  background: white;
+}
+
+.player-container {
+  position: relative;
+  height: 80%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: column;
+  flex: 1;
+}
+
+.player-container svg {
+  position: absolute;
+  height: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-90deg);
+  pointer-events: none;
+}
+.player-container svg circle {
+  transition: all 0.2s ease-in-out;
+}
+
+.time-display {
+  position: absolute;
+  bottom: 10%;
+  color: white;
+  font-size: 50px;
+}
+
+video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: -10;
+}
+
+.play {
+  margin: auto;
+  position: relative;
+}
+.headerTitle {
+  position: fixed;
+  color: white;
+  top: 5%;
+  font-size: 50px;
+}
+
+/* Responsiveness */
+
+@media only screen and (max-width: 767px) {
+  .app {
+    height: 100%;
+  }
+
+  .headerTitle {
+    font-size: 18px;
+  }
+
+  video {
+    height: 100%;
+    width: auto;
+    display: block;
+  }
+  
+  .time-select {
+    position: fixed;
+    height: 50%;
+    bottom: 0;
+    left: 0%;
+    width: 50%;
+  }
+
+  .time-select button {
+    width: 70%;
+    height: 20%;
+    color: white;
+    border: 1px solid white;
+  }
+
+  .time-select button:hover {
+    background: white;
+    color: rgb(63, 63, 63);
+    border: 0px, solid white;
+    box-shadow: 0 0 10px black;
+  }
+
+  .sound-picker {
+    position: fixed;
+    height: 50%;
+    bottom: 0;
+    right: 0%;
+    width: 50%;
+  }
+
+  .sound-picker button {
+    transition: ease-in-out 0.4s;
+    box-shadow: 0 0 10px black;
+  }
+
+  .player-container {
+    height: 50%;
+    position: fixed;
+    top: 0;
+  }
+
+  .play {
+    height: 10%;
+  }
+
+  .time-display {
+    font-size: 20px;
+  }
 }
