@@ -109,14 +109,21 @@
 
 /* Responsiveness */
 
+/*
+Tablet 
+*/
+
  @media only screen and (min-width: 768px) {
   video {
-    max-height: auto;
+    max-height: 100%;
     width: auto;
     display: block;
   }
-  
-} 
+}
+
+/*
+Mobile
+*/
 
 @media only screen and (max-width: 767px) {
   .app {
