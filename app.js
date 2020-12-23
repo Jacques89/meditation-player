@@ -22,7 +22,7 @@ const app = () => {
     sound.addEventListener('click', function() {
       track.src = this.getAttribute('data-sound')
       video.src = this.getAttribute('data-video')
-      checkPlaying(track)
+      // checkPlaying(track)
     })
   })
 
